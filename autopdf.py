@@ -7,17 +7,20 @@ from reportlab.pdfbase.ttfonts import TTFont
 import csv
 reg = input("Enter the CSV file location : ")
 print("\n")
+X = int(input("Enter the X Coordinate : "))
+print("\n")
+Y = int(input("Enter the Y Coordinate : "))
 reader = csv.DictReader(open(reg))
 pdfmetrics.registerFont(TTFont('Vera', 'Vera.ttf'))
 j = 0
-cert = input("Enter the Certificate Location with Name")
+cert = input("Enter the Certificate Location with Name : ")
 for i in reader:
 	if(i['Name']!=""):
 		packet = io.BytesIO()
 		# create a new PDF with Reportlab
 		can = canvas.Canvas(packet, pagesize=letter)
 		can.setFont("Vera",20)
-		can.drawString(363, 210, i['Name'])
+		can.drawString(X, Y, i['Name'])#363,210
 		can.save()
 		#move to the beginning of the StringIO buffer
 		packet.seek(0)
